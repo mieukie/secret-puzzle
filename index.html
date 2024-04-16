@@ -12,31 +12,29 @@
 </head>
 <body>
 
-    <div id="background"></div>
-
     <div id="bigParent">
 
-    <div id="candleContent">
-        <button class="candle" id="candle1" onclick="ignite1()"></button>
-        <button class="candle" id="candle2" onclick="ignite2()"></button>
-        <button class="candle" id="candle3" onclick="ignite3()"></button>
-        <button class="candle" id="candle4" onclick="ignite4()"></button>
-        <button class="candle" id="candle5" onclick="ignite5()"></button>
-        <button class="candle" id="candle6" onclick="ignite6()"></button>
-        <button class="candle" id="candle7" onclick="ignite7()"></button>
-    </div>
+        <div id="flameContainer">
+            <div class="flame" id="flame1"></div>
+            <div class="flame" id="flame2"></div>
+            <div class="flame" id="flame3"></div>
+            <div class="flame" id="flame4"></div>
+            <div class="flame" id="flame5"></div>
+            <div class="flame" id="flame6"></div>
+            <div class="flame" id="flame7"></div>
+        </div>
 
-    <div id="flameContent">
-        <div class="flame" id="flame1"><img src="img/fire.gif"></div>
-        <div class="flame" id="flame2"><img src="img/fire.gif"></div>
-        <div class="flame" id="flame3"><img src="img/fire.gif"></div>
-        <div class="flame" id="flame4"><img src="img/fire.gif"></div>
-        <div class="flame" id="flame5"><img src="img/fire.gif"></div>
-        <div class="flame" id="flame6"><img src="img/fire.gif"></div>
-        <div class="flame" id="flame7"><img src="img/fire.gif"></div>
-    </div>
+        <div id="candleContainer">
+            <button class="candle" id="candle1" onclick="ignite(1)"></button>
+            <button class="candle" id="candle2" onclick="ignite(2)"></button>
+            <button class="candle" id="candle3" onclick="ignite(3)"></button>
+            <button class="candle" id="candle4" onclick="ignite(4)"></button>
+            <button class="candle" id="candle5" onclick="ignite(5)"></button>
+            <button class="candle" id="candle6" onclick="ignite(6)"></button>
+            <button class="candle" id="candle7" onclick="ignite(7)"></button>
+        </div>
 
-    <img id="CeleBg" src="img/celebBg.PNG">
+        <div id="CeleBg" src="img/celebBg.PNG">
 
     </div>
     

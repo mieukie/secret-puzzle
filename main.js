@@ -1,150 +1,39 @@
-var clear1 = false
-var clear2 = false
-var clear3 = false
-var clear4 = false
-var clear5 = false
-var clear6 = false
-var clear7 = false
+// CODE IS GREEN, ORANGE, PURPLE, BLUE, RED, YELLOW, PINK 
+// or: 7, 3, 2, 4, 1, 5, 6
 
-var lit1 = false
-var lit2 = false
-var lit3 = false
-var lit4 = false
-var lit5 = false
-var lit6 = false
-var lit7 = false
+var currentCode = [];
+const correctCode = [7, 3, 2, 4, 1, 5, 6];
 
-function ignite1() {
-    document.getElementById("flame1").style.visibility="visible"
-    console.log("red signal")
-    lit1 = true
-    if (clear1 == true && clear2 == true && clear3 == true && clear4 == true) {
-        clear5 = true;
-        console.log('clear5')
-    }
-    checker()
-}
-function ignite2() {
-    document.getElementById("flame2").style.visibility="visible"
-    lit2 = true;
-    if (clear1 == true && clear2 == true) {
-        clear3 = true;
-        console.log('clear3')
-    }
-    checker()
-}
-function ignite3() {
-    document.getElementById("flame3").style.visibility="visible"
-    lit3 = true;
-    if (clear1 == true) {
-        clear2 = true
-        console.log('clear2')
-    }
-    checker()
-}
-function ignite4() {
-    document.getElementById("flame4").style.visibility="visible"
-    lit4 = true
-    if (clear1 == true && clear2 == true && clear3 == true) {
-        clear4 = true;
-        console.log('clear4')
-    }
-    checker()
-}
-function ignite5() {
-    document.getElementById("flame5").style.visibility="visible"
-    lit5 = true;
-    if (clear1 == true && clear2 == true && clear3 == true && clear4 == true && clear5 == true) {
-        clear6 = true;
-        console.log('clear6')
-    }
-    checker()
-}
-function ignite6() {
-    document.getElementById("flame6").style.visibility="visible"
-    lit6 = true;
-    if (clear1 == true && clear2 == true && clear3 == true && clear4 == true && clear5 == true && clear6 == true) {
-        clear7 = true;
-        console.log('clear7')
-        passed();
-    }
-    console.log(clear1, clear2, clear3, clear4, clear5, clear6, clear7)
-    //checker()
-}
-function ignite7() {
-    document.getElementById("flame7").style.visibility="visible"
-    lit7 = true;
-    clear1 = true;
-    console.log('clear1')
-    checker();
-}
+function ignite(candleNum) {
+    document.getElementById("flame" + candleNum.toString()).style.visibility="visible"; //make the flame appear above the candle
+    document.getElementById("candle" + candleNum.toString()).disabled = true; //make it so the user can't click that candle again
+    currentCode.push(candleNum); //add the user's choice to their current code
+    console.log(currentCode) // for testing
 
-function checker() {
-    if (clear1 == true && clear2 == true && clear3 == true && clear4 == true && clear5 == true && clear6 == true && clear7 == true) {
-        passed();
-        console.log('passed')
-    }
-    if (lit1 == true && lit2 == true && lit3 == true && lit4 == true && lit5 == true && lit6 == true && lit7 == true && clear7 == false) {
-        failed();
-        console.log("failed")
-    }
-}
-
-
-function failed() {
-    unignite1();
-    unignite2();
-    unignite3();
-    unignite4();
-    unignite5();
-    unignite6();
-    unignite7();
-    clear1 = false
-    clear2 = false
-    clear3 = false
-    clear4 = false
-    clear5 = false
-    clear6 = false
-    clear7 = false
-    lit1 = false
-    lit2 = false
-    lit3 = false
-    lit4 = false
-    lit5 = false
-    lit6 = false
-    lit7 = false
-}
+    if (currentCode.length == 7) //if the user has lit the last candle
+        if (JSON.stringify(currentCode) === JSON.stringify(correctCode)) //check if it matches (stringify bc u can't directly compare arrays with == or ===)
+            passed();
+        else
+            failed();
+};
 
 function passed() {
-    console.log("player win");
-    document.getElementById("CeleBg").style.visibility="visible"
-}
+    document.getElementById("CeleBg").style.visibility="visible" // show win screen
 
-function unignite1() {
-    document.getElementById("flame1").style.visibility="hidden"
-    console.log("red signal")
-}
-function unignite2() {
-    document.getElementById("flame2").style.visibility="hidden"
-}
-function unignite3() {
-    document.getElementById("flame3").style.visibility="hidden"
-}
-function unignite4() {
-    document.getElementById("flame4").style.visibility="hidden"
-}
-function unignite5() {
-    document.getElementById("flame5").style.visibility="hidden"
-}
-function unignite6() {
-    document.getElementById("flame6").style.visibility="hidden"
-}
-function unignite7() {
-    document.getElementById("flame7").style.visibility="hidden"
-}
+    console.log("player win")
+};
 
+function failed() {
+    for(let i = 1; i < 8; i++){ // unlight the flames all 7 candles
+        document.getElementById("flame" + i.toString()).style.visibility="hidden";
+    }
+    for(let i = 1; i < 8; i++){ // re-enable all 7 candles to be clicked again
+        document.getElementById("candle" + i.toString()).disabled = false;
+    }
+    currentCode = []; // reset/clear the user's current code attempt
 
-//green, orange, purple, blue, red, yellow, pink
+    console.log("player fail")
+};
 
 
 //Congratulations on solving this year's scavenger hunt puzzle thingie! For your birthday reward, you finally get your own minecraft java account! (Whenever you want to redeem the prize, just enter this code into amazon and follow the instructions there "code")
